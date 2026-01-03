@@ -1,0 +1,41 @@
+.character-info {
+  min-height: calc(100vh - 120px);
+  position: relative;
+}
+
+.character-info__top {
+  padding-left: 210px;
+  padding-top: 42px;
+}
+
+.character-info__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  background: none;
+  border: none;
+  padding: 0;
+
+  cursor: pointer;
+}
+
+.character-info__back-text {
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+.character-info__back svg {
+  display: block;
+}
+
+.character-info__loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
