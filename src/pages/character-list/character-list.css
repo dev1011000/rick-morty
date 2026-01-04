@@ -1,0 +1,23 @@
+.character-list {
+  min-height: calc(100vh - 120px);
+  position: relative;
+}
+
+.character-list__top {
+  display: flex;
+  justify-content: center;
+  padding-top: 26px;
+}
+
+.character-list__logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.character-list__loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
