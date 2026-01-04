@@ -1,4 +1,4 @@
-import bigLogo from '@/assets/images/big-logo.png';
+import { BigLogoImage } from '@/assets';
 import Loader from '@/shared/components/loader';
 
 import './character-list.css';
@@ -8,7 +8,7 @@ const CharacterListPage = () => {
     <div className='character-list'>
        <div className="character-list__top">
         <img
-          src={bigLogo}
+          src={BigLogoImage}
           alt="Rick and Morty"
           className="character-list__logo"
         />

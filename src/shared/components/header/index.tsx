@@ -1,6 +1,4 @@
-import LangIcon from '@/assets/icons/language.svg?react';
-import LogoIcon from '@/assets/icons/logo.svg?react';
-import ThemeIcon from '@/assets/icons/theme.svg?react';
+import { LanguageIcon, LogoIcon, ThemeIcon} from '@/assets';
 
 import './header.css';
 
@@ -23,7 +21,7 @@ const Header = () => {
           type="button"
           className="header__action"
         >
-          <LangIcon />
+          <LanguageIcon />
         </button>
       </div>
     </header>
