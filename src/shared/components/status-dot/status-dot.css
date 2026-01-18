@@ -1,0 +1,19 @@
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: 0 0 10px;
+}
+
+.status-dot_variant_alive {
+  background: #12b800;
+}
+
+.status-dot_variant_dead {
+  background: #df0000;
+}
+
+.status-dot_variant_unknown {
+  background: #ff9900;
+}
