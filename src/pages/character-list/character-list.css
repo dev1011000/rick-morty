@@ -15,7 +15,8 @@
   height: auto;
 }
 
-.character-list__loader {
+.character-list__loader,
+.character-list__controls {
   position: absolute;
   left: 50%;
   top: 50%;
