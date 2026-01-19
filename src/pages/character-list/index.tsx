@@ -7,14 +7,14 @@ import StatusDot, { type StatusVariant } from '@/shared/components/status-dot';
 
 import './character-list.css';
 
-const statusOptions: SelectOption[] = [
+const statusOptions: SelectOption<StatusVariant>[] = [
   { value: 'alive', label: 'Alive' },
   { value: 'dead', label: 'Dead' },
   { value: 'unknown', label: 'Unknown' }
 ];
 
 const CharacterListPage = () => {
-  const [status, setStatus] = useState('alive');
+  const [status, setStatus] = useState<StatusVariant>('alive');
 
   return (
     <div className='character-list'>
@@ -32,8 +32,8 @@ const CharacterListPage = () => {
           value={status}
           onChange={setStatus}
           options={statusOptions}
-          addon={<StatusDot variant={status as StatusVariant} />}
-          renderOptionAddon={(v) => <StatusDot variant={v as StatusVariant} />}
+          addon={<StatusDot variant={status} />}
+          renderOptionAddon={(v) => <StatusDot variant={v} />}
         />
       </div>
     </div>

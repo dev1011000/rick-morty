@@ -57,6 +57,11 @@
 
 .select__arrow {
   margin-left: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.select_open .select__arrow {
+  transform: rotate(180deg);
 }
 
 .select__arrow svg {

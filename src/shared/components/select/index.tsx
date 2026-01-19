@@ -1,24 +1,24 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { ArrowDownIcon, ArrowUpIcon } from '@/assets';
+import { ArrowDownIcon } from '@/assets';
 
 import type { SelectOption, SelectSize } from './types';
 
 import './select.css';
 
-interface SelectProps {
-  options: SelectOption[];
-  value: string;
-  onChange: (value: string) => void;
+interface SelectProps<T extends string> {
+  options: SelectOption<T>[];
+  value: T;
+  onChange: (value: T) => void;
   placeholder?: string;
   size?: SelectSize;
 
   addon?: React.ReactNode;
 
-  renderOptionAddon?: (value: string) => React.ReactNode;
+  renderOptionAddon?: (value: T) => React.ReactNode;
 }
 
-const Select = ({
+const Select = <T extends string>({
   options,
   value,
   onChange,
@@ -26,37 +26,37 @@ const Select = ({
   size = 'lg',
   addon,
   renderOptionAddon
-}: SelectProps) => {
+}: SelectProps<T>) => {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const selectedOption = useMemo(() => options.find((o) => o.value === value), [options, value]);
   const displayText = selectedOption?.label || placeholder || options[0]?.label || '';
 
-  const toggle = () => setIsOpen((prev) => !prev);
-  const close = () => setIsOpen(false);
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
+  const closeDropdown = () => setIsOpen(false);
 
-  const handleSelect = (nextValue: string) => {
+  const selectOption = (nextValue: T) => {
     onChange(nextValue);
-    close();
+    closeDropdown();
   };
 
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleOutside = (e: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(e.target as Node)) close();
+    const handleClickOutside = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) closeDropdown();
     };
 
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape') closeDropdown();
     };
 
-    document.addEventListener('mousedown', handleOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleEsc);
 
     return () => {
-      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEsc);
     };
   }, [isOpen]);
@@ -64,12 +64,12 @@ const Select = ({
   return (
     <div
       ref={rootRef}
-      className={`select select_size_${size}`}
+      className={`select select_size_${size} ${isOpen ? 'select_open' : ''}`}
     >
       <button
         type='button'
         className='select__trigger'
-        onClick={toggle}
+        onClick={toggleDropdown}
         aria-haspopup='listbox'
         aria-expanded={isOpen}
       >
@@ -78,7 +78,9 @@ const Select = ({
           {addon ? <span className='select__addon'>{addon}</span> : null}
         </span>
 
-        <span className='select__arrow'>{isOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}</span>
+        <span className='select__arrow'>
+          <ArrowDownIcon />
+        </span>
       </button>
 
       {isOpen ? (
@@ -91,7 +93,7 @@ const Select = ({
               key={opt.value}
               type='button'
               className='select__option'
-              onClick={() => handleSelect(opt.value)}
+              onClick={() => selectOption(opt.value)}
               role='option'
               aria-selected={opt.value === value}
             >
