@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ArrowDownIcon } from '@/assets';
+import { cn } from '@/shared/lib/cn/cn';
 
 import type { SelectOption, SelectSize } from './types';
 
@@ -12,6 +13,7 @@ interface SelectProps<T extends string> {
   onChange: (value: T) => void;
   placeholder?: string;
   size?: SelectSize;
+  className?: string;
 
   addon?: React.ReactNode;
 
@@ -24,6 +26,7 @@ const Select = <T extends string>({
   onChange,
   placeholder,
   size = 'lg',
+  className,
   addon,
   renderOptionAddon
 }: SelectProps<T>) => {
@@ -64,7 +67,7 @@ const Select = <T extends string>({
   return (
     <div
       ref={rootRef}
-      className={`select select_size_${size} ${isOpen ? 'select_open' : ''}`}
+      className={cn('select', className, `select_size_${size}`, isOpen && 'select_open')}
     >
       <button
         type='button'
