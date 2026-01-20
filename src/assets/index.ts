@@ -1,10 +1,12 @@
 import ArrowLeftIcon from './icons/arrow-left.svg?react';
+import ArrowDownIcon from './icons/arrow-down.svg?react';
 import LanguageIcon from './icons/language.svg?react';
 import LogoIcon from './icons/logo.svg?react';
 import ThemeIcon from './icons/theme.svg?react';
 
 export {
-  ArrowLeftIcon,
+  ArrowDownIcon,
+  ArrowLeftIcon,  
   LanguageIcon,
   LogoIcon,
   ThemeIcon

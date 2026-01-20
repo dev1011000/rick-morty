@@ -1,0 +1,131 @@
+.select {
+  position: relative;
+  display: inline-block;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.select__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #393939;
+  border-radius: 6px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.select__text,
+.select__option-text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(0, 0, 0, 0.6);
+  text-align: left;
+}
+
+.select_size_sm .select__text,
+.select_size_sm .select__option-text {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.select__value {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  flex: 1;
+}
+
+.select__text {  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.select__addon,
+.select__arrow,
+.select__option-addon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select__addon,
+.select__option-addon {
+  margin-left: 5px;
+}
+
+.select__arrow {
+  margin-left: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.select_open .select__arrow {
+  transform: rotate(180deg);
+}
+
+.select__arrow svg {
+  display: block;
+}
+
+.select_size_lg .select__arrow svg {
+  width: 10px;
+  height: 5px;
+}
+
+.select_size_sm .select__arrow svg {
+  width: 4px;
+  height: 2px;
+}
+
+.select_size_lg {
+  width: 240px;
+}
+
+.select_size_lg .select__trigger {
+  height: 55px;
+  padding: 0 14px;
+}
+
+.select_size_sm {
+  width: 94px;
+}
+
+.select_size_sm .select__trigger {
+  height: 21px;
+  padding: 0 5px;
+}
+
+.select__dropdown {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 7px);
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #393939;
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.select__option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.select_size_lg .select__option {
+  padding: 10px 14px;
+}
+
+.select_size_sm .select__option {
+  padding: 5px;
+}
+
+.select__option:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
