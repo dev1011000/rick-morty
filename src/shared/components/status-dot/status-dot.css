@@ -6,14 +6,14 @@
   flex: 0 0 10px;
 }
 
-.status-dot_variant_alive {
+.status-dot--variant-alive {
   background: #12b800;
 }
 
-.status-dot_variant_dead {
+.status-dot--variant-dead {
   background: #df0000;
 }
 
-.status-dot_variant_unknown {
+.status-dot--variant-unknown {
   background: #ff9900;
 }

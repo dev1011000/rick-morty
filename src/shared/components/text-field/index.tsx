@@ -46,15 +46,15 @@ export const TextField = (props: TextFieldProps) => {
       {label && <span className="text-field-label">{label}</span>}
       
       <div className={cn(
-        'text-field-container',
-        `text-field_variant_${variant}`,
-        `text-field_size_${size}`,
-        Boolean(icon) && 'text-field_with-icon'
+        'text-field',
+        `text-field--variant-${variant}`,
+        `text-field--size-${size}`,
+        { 'text-field--with-icon': !!icon }
       )}>
-        {icon && <div className="text-field-icon">{icon}</div>}
+        {icon && <div className="text-field__icon">{icon}</div>}
         
         <input
-          className="text-field-input"
+          className="text-field__input"
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
@@ -64,11 +64,11 @@ export const TextField = (props: TextFieldProps) => {
         {value && onClear && (
           <button 
             type="button" 
-            className="text-field-clear-btn" 
+            className="text-field__clear-btn" 
             onClick={onClear}
             aria-label="Clear input"
           >
-            <CloseIcon className="text-field-clear-icon" />
+            <CloseIcon className="text-field__clear-icon" />
           </button>
         )}
       </div>

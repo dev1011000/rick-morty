@@ -67,7 +67,7 @@ const Select = <T extends string>({
   return (
     <div
       ref={rootRef}
-      className={cn('select', className, `select_size_${size}`, isOpen && 'select_open')}
+      className={cn('select', className, `select--size-${size}`, { 'select--open': isOpen })}
     >
       <button
         type='button'

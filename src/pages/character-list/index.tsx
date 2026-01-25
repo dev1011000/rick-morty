@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { BigLogoImage, SearchIcon } from '@/assets';
-import { TextField } from '@/shared/components/text-field';
+import { TextField } from '@/shared/components';
 
 import './character-list.css';
 

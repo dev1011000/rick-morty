@@ -11,14 +11,14 @@
   font-weight: 500;
 }
 
-.text-field-container {
+.text-field {
   display: flex;
   align-items: center;
   width: 240px;
   overflow: hidden;
 }
 
-.text-field-input {
+.text-field__input {
   flex: 1;
   min-width: 0;
   outline: none;
@@ -29,16 +29,16 @@
   color: inherit;
 }
 
-.text-field-input::placeholder {
+.text-field__input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.text-field_variant_underlined {
+.text-field--variant-underlined {
   border-bottom: 1px solid #000;
   padding-bottom: 4px;
 }
 
-.text-field_variant_underlined .text-field-input {
+.text-field--variant-underlined .text-field__input {
   font-size: 20px;
   line-height: 30px;
   font-weight: 500;
@@ -46,40 +46,40 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
-.text-field_variant_outlined {
+.text-field--variant-outlined {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   background: #fff;
 }
 
-.text-field_size_lg.text-field_variant_outlined {
+.text-field--size-lg.text-field--variant-outlined {
   min-height: 56px;
 }
 
-.text-field_size_sm.text-field_variant_outlined {
+.text-field--size-sm.text-field--variant-outlined {
   min-height: 40px;
 }
 
-.text-field-icon {
+.text-field__icon {
   display: flex;
   padding: 0 8px 0 16px;
   color: rgba(0, 0, 0, 0.5);
 }
 
-.text-field-icon svg {
+.text-field__icon svg {
   width: 24px;
   height: 24px;
 }
 
-.text-field_variant_outlined .text-field-input {
+.text-field--variant-outlined .text-field__input {
   padding: 16px 0;
 }
 
-.text-field_variant_outlined:not(.text-field_with-icon) .text-field-input {
+.text-field--variant-outlined:not(.text-field--with-icon) .text-field__input {
   padding-left: 16px;
 }
 
-.text-field-clear-btn {
+.text-field__clear-btn {
   background: none;
   border: none;
   padding: 0;
@@ -90,20 +90,20 @@
   transition: color 0.2s;
 }
 
-.text-field-clear-btn:hover {
+.text-field__clear-btn:hover {
   color: #000;
 }
 
-.text-field_variant_outlined .text-field-clear-btn {
+.text-field--variant-outlined .text-field__clear-btn {
   margin: 0 12px 0 5px;
   padding: 23.5px 0;
 }
 
-.text-field_variant_underlined .text-field-clear-btn {
+.text-field--variant-underlined .text-field__clear-btn {
   margin-left: 8px;
 }
 
-.text-field-clear-icon {
+.text-field__clear-icon {
   width: 9px;
   height: 9px;
 }
