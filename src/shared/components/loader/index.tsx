@@ -1,4 +1,5 @@
 import { PortalImage } from '@/assets';
+import { cn } from '@/shared/lib/cn/cn';
 
 import './loader.css';
 
@@ -11,7 +12,7 @@ type LoaderProps = {
 
 const Loader = ({ size, caption }: LoaderProps) => {
   return (
-    <div className={`loader loader_size_${size}`}>
+    <div className={cn('loader', `loader--size-${size}`)}>
       <div className="loader__icon" aria-hidden="true">
         <PortalImage />
       </div>

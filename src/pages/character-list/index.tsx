@@ -1,20 +1,13 @@
 import { useState } from 'react';
 
-import { BigLogoImage } from '@/assets';
-import Select from '@/shared/components/select';
-import type { SelectOption } from '@/shared/components/select/types';
-import StatusDot, { type StatusVariant } from '@/shared/components/status-dot';
+import { BigLogoImage, SearchIcon } from '@/assets';
+import { TextField } from '@/shared/components';
 
 import './character-list.css';
 
-const statusOptions: SelectOption<StatusVariant>[] = [
-  { value: 'alive', label: 'Alive' },
-  { value: 'dead', label: 'Dead' },
-  { value: 'unknown', label: 'Unknown' }
-];
-
 const CharacterListPage = () => {
-  const [status, setStatus] = useState<StatusVariant>('alive');
+  const [name, setName] = useState('');
+  const [search, setSearch] = useState('');
 
   return (
     <div className='character-list'>
@@ -27,14 +20,25 @@ const CharacterListPage = () => {
       </div>
 
       <div className='character-list__controls'>
-        <Select
-          size='sm'
-          value={status}
-          onChange={setStatus}
-          options={statusOptions}
-          addon={<StatusDot variant={status} />}
-          renderOptionAddon={(v) => <StatusDot variant={v} />}
+        <TextField
+          variant='outlined'
+          placeholder='Filter by name...'
+          icon={<SearchIcon />}
+          value={search}
+          onChange={setSearch}
+          onClear={() => setSearch('')}
         />
+
+        <div style={{ marginTop: '40px' }}>
+          <TextField
+            label='Вариант для формы'
+            variant='underlined'
+            value={name}
+            onChange={setName}
+            onClear={() => setName('')}
+            placeholder='Rick Sanchez'
+          />
+        </div>
       </div>
     </div>
   );
