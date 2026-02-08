@@ -1,6 +1,6 @@
 import { LanguageIcon, LogoIcon, ThemeIcon} from '@/assets';
 
-import './header.css';
+import './header.scss';
 
 const Header = () => {
   return (

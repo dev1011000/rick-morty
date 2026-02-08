@@ -1,7 +1,7 @@
 import { PortalImage } from '@/assets';
-import { cn } from '@/shared/lib/cn/cn';
 
-import './loader.css';
+import './loader.scss';
+import { cn } from '@/shared/lib';
 
 type LoaderSize = 'small' | 'large';
 

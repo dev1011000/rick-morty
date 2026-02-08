@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon } from '@/assets';
 import { Loader } from '@/shared/components';
 
-import './character-info.css';
+import './character-info.scss';
 
 const CharacterInfoPage = () => {
   const navigate = useNavigate();

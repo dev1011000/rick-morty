@@ -3,7 +3,7 @@ import React from 'react';
 import { CloseIcon } from '@/assets';
 import { cn } from '@/shared/lib/cn/cn';
 
-import './text-field.css';
+import './text-field.scss';
 
 /** 
  * underlined - только нижняя граница (для форм)
@@ -42,15 +42,16 @@ export const TextField = (props: TextFieldProps) => {
   };
 
   return (
-    <div className={cn('text-field-wrapper', className)}>
-      {label && <span className="text-field-label">{label}</span>}
+    <div className={cn(
+      'text-field',
+      `text-field--${variant}`,
+      `text-field--${size}`,
+      { 'text-field--with-icon': !!icon },
+      className
+    )}>
+      {label && <span className="text-field__label">{label}</span>}
       
-      <div className={cn(
-        'text-field',
-        `text-field--variant-${variant}`,
-        `text-field--size-${size}`,
-        { 'text-field--with-icon': !!icon }
-      )}>
+      <div className="text-field__control">
         {icon && <div className="text-field__icon">{icon}</div>}
         
         <input

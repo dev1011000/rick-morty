@@ -1,17 +1,17 @@
-.text-field-wrapper {
+.text-field {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-.text-field-label {
-  font-size: 14px;
+.text-field__label {
   color: #8e8e8e;
+  font-size: 14px;
   font-weight: 500;
 }
 
-.text-field {
+.text-field__control {
   display: flex;
   align-items: center;
   width: 240px;
@@ -21,42 +21,42 @@
 .text-field__input {
   flex: 1;
   min-width: 0;
+  border: none;
   outline: none;
   background: transparent;
-  border: none;
+  color: inherit;
   font-family: inherit;
   font-size: 16px;
-  color: inherit;
 }
 
 .text-field__input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.text-field--variant-underlined {
-  border-bottom: 1px solid #000;
+.text-field--underlined .text-field__control {
   padding-bottom: 4px;
+  border-bottom: 1px solid #000;
 }
 
-.text-field--variant-underlined .text-field__input {
-  font-size: 20px;
-  line-height: 30px;
-  font-weight: 500;
-  letter-spacing: 0.15px;
+.text-field--underlined .text-field__input {
   color: rgba(0, 0, 0, 0.87);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.15px;
 }
 
-.text-field--variant-outlined {
+.text-field--outlined .text-field__control {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   background: #fff;
 }
 
-.text-field--size-lg.text-field--variant-outlined {
+.text-field--lg.text-field--outlined .text-field__control {
   min-height: 56px;
 }
 
-.text-field--size-sm.text-field--variant-outlined {
+.text-field--sm.text-field--outlined .text-field__control {
   min-height: 40px;
 }
 
@@ -71,35 +71,35 @@
   height: 24px;
 }
 
-.text-field--variant-outlined .text-field__input {
+.text-field--outlined .text-field__input {
   padding: 16px 0;
 }
 
-.text-field--variant-outlined:not(.text-field--with-icon) .text-field__input {
+.text-field--outlined:not(.text-field--with-icon) .text-field__input {
   padding-left: 16px;
 }
 
 .text-field__clear-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
   display: flex;
   align-items: center;
+  padding: 0;
+  border: none;
+  background: none;
   color: rgba(0, 0, 0, 0.5);
   transition: color 0.2s;
+  cursor: pointer;
 }
 
 .text-field__clear-btn:hover {
   color: #000;
 }
 
-.text-field--variant-outlined .text-field__clear-btn {
+.text-field--outlined .text-field__clear-btn {
   margin: 0 12px 0 5px;
   padding: 23.5px 0;
 }
 
-.text-field--variant-underlined .text-field__clear-btn {
+.text-field--underlined .text-field__clear-btn {
   margin-left: 8px;
 }
 
