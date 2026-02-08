@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import Footer from '@/shared/components/footer';
-import Header from '@/shared/components/header';
+import { Footer, Header } from '@/shared/components';
 
 import './layout.css';
 

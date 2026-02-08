@@ -23,8 +23,8 @@
   text-align: left;
 }
 
-.select_size_sm .select__text,
-.select_size_sm .select__option-text {
+.select--size-sm .select__text,
+.select--size-sm .select__option-text {
   font-size: 14px;
   line-height: 21px;
 }
@@ -60,7 +60,7 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.select_open .select__arrow {
+.select--open .select__arrow {
   transform: rotate(180deg);
 }
 
@@ -68,30 +68,30 @@
   display: block;
 }
 
-.select_size_lg .select__arrow svg {
+.select--size-lg .select__arrow svg {
   width: 10px;
   height: 5px;
 }
 
-.select_size_sm .select__arrow svg {
+.select--size-sm .select__arrow svg {
   width: 4px;
   height: 2px;
 }
 
-.select_size_lg {
+.select--size-lg {
   width: 240px;
 }
 
-.select_size_lg .select__trigger {
+.select--size-lg .select__trigger {
   height: 55px;
   padding: 0 14px;
 }
 
-.select_size_sm {
+.select--size-sm {
   width: 94px;
 }
 
-.select_size_sm .select__trigger {
+.select--size-sm .select__trigger {
   height: 21px;
   padding: 0 5px;
 }
@@ -118,11 +118,11 @@
   text-align: left;
 }
 
-.select_size_lg .select__option {
+.select--size-lg .select__option {
   padding: 10px 14px;
 }
 
-.select_size_sm .select__option {
+.select--size-sm .select__option {
   padding: 5px;
 }
 

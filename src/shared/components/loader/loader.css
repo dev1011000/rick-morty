@@ -5,12 +5,12 @@
   gap: 32px;
 }
 
-.loader_size_large .loader__icon svg {
+.loader--size-large .loader__icon svg {
   width: 475px;
   height: 465px;
 }
 
-.loader_size_small .loader__icon svg {
+.loader--size-small .loader__icon svg {
   width: 103px;
   height: 101px;
 }

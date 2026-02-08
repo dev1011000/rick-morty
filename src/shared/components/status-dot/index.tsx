@@ -1,8 +1,10 @@
-export type StatusVariant = 'alive' | 'dead' | 'unknown';
+import { cn } from '@/shared/lib/cn/cn';
 import './status-dot.css';
 
+export type StatusVariant = 'alive' | 'dead' | 'unknown';
+
 const StatusDot = ({ variant }: { variant: StatusVariant }) => {
-  return <span className={`status-dot status-dot_variant_${variant}`} />;
+  return <span className={cn('status-dot', `status-dot--variant-${variant}`)} />;
 };
 
 export default StatusDot;
