@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ArrowDownIcon } from '@/assets';
-import { cn } from '@/shared/lib/cn/cn';
+import { cn } from '@/shared/lib';
 
 import type { SelectOption, SelectSize } from './types';
 

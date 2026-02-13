@@ -1,5 +1,5 @@
-import { BigLogoImage, CardImage, SearchIcon } from '@/assets';
-import { CharacterCardWidget } from '@/shared/widgets/character-card';
+import { BigLogoImage, CardImage } from '@/assets';
+import { CharacterCardWidget } from '@/widgets';
 
 import './character-list.scss';
 
@@ -22,7 +22,7 @@ const CharacterListPage = () => {
             image: CardImage,
             gender: 'Male',
             species: 'Human',
-            location: 'Citadel of Ricks',
+            location: 'Earth',
             status: 'Alive',
           }}
         />

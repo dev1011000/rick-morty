@@ -38,12 +38,29 @@
   border-bottom: 1px solid #000;
 }
 
+.text-field--underlined.text-field--lg .text-field__control {
+  height: 30px;
+}
+
+.text-field--underlined.text-field--sm .text-field__control {
+  height: 21px;
+  padding-bottom: 2px;
+}
+
 .text-field--underlined .text-field__input {
   color: rgba(0, 0, 0, 0.87);
   font-size: 20px;
   font-weight: 500;
   line-height: 30px;
   letter-spacing: 0.15px;
+}
+
+.text-field--underlined.text-field--sm .text-field__input {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .text-field--outlined .text-field__control {

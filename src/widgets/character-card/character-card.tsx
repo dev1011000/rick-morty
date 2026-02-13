@@ -1,53 +1,54 @@
 import { useState } from 'react';
 
 import { CheckboxIcon, CloseIcon, EditIcon } from '@/assets';
-import { STATUS_OPTIONS } from '@/shared/constants/status-options';
-import { Select } from '@/shared/components/select';
-import StatusDot from '@/shared/components/status-dot';
-import { TextField } from '@/shared/components/text-field';
-import { cn } from '@/shared/lib/cn/cn';
+import { STATUS_OPTIONS } from '@/shared/constants';
+import { Select, StatusDot, TextField } from '@/shared/components';
+import { cn } from '@/shared/lib';
 
-import type { CharacterCardData, CharacterStatus } from './types';
+import type { CharacterCardData, CharacterCardMode, CharacterStatus } from './types';
 
 import './character-card.scss';
 
 interface CharacterCardWidgetProps {
   data: CharacterCardData;
-  onSave?: (payload: { id: string; name: string; status: CharacterStatus }) => Promise<void> | void;
+  onSave?: (payload: { id: string; name: string; status: CharacterStatus; location: string }) => Promise<void> | void;
 }
 
 export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
   const { data, onSave } = props;
 
-  const [mode, setMode] = useState<'view' | 'edit'>('view');
+  const [mode, setMode] = useState<CharacterCardMode>('view');
   const [editName, setEditName] = useState(data.name);
   const [editStatus, setEditStatus] = useState<CharacterStatus>(data.status);
+  const [editLocation, setEditLocation] = useState(data.location);
 
   const handleEdit = () => {
     setEditName(data.name);
     setEditStatus(data.status);
+    setEditLocation(data.location);
     setMode('edit');
   };
 
   const handleCancel = () => {
     setEditName(data.name);
     setEditStatus(data.status);
+    setEditLocation(data.location);
     setMode('view');
   };
 
+  const trimmedName = editName.trim();
+  const trimmedLocation = editLocation.trim();
+  const hasChanges = trimmedName !== data.name || editStatus !== data.status || trimmedLocation !== data.location;
+  const canSave = trimmedName !== '' && trimmedLocation !== '' && hasChanges;
+
   const handleSave = async () => {
-    const trimmedName = editName.trim();
-    const hasChanges = trimmedName !== data.name || editStatus !== data.status;
-    if (!trimmedName || !hasChanges) return;
+    if (!trimmedName || !trimmedLocation || !hasChanges) return;
 
     if (onSave) {
-      await onSave({ id: data.id, name: trimmedName, status: editStatus });
+      await onSave({ id: data.id, name: trimmedName, status: editStatus, location: trimmedLocation });
     }
     setMode('view');
   };
-
-  const hasChanges = editName.trim() !== data.name || editStatus !== data.status;
-  const canSave = editName.trim() !== '' && hasChanges;
 
   return (
     <div className={cn('character-card', { 'character-card--edit': mode === 'edit' })}>
@@ -96,6 +97,26 @@ export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
           </>
         ) : (
           <>
+            <div className='character-card__actions'>
+              <button
+                type='button'
+                className='character-card__action-btn character-card__action-btn--cancel'
+                onClick={handleCancel}
+                aria-label='Cancel editing'
+              >
+                <CloseIcon />
+              </button>
+              <button
+                type='button'
+                className='character-card__action-btn character-card__action-btn--save'
+                onClick={handleSave}
+                disabled={!canSave}
+                aria-label='Save changes'
+              >
+                <CheckboxIcon />
+              </button>
+            </div>
+
             <div className='character-card__edit-field'>
               <TextField
                 variant='underlined'
@@ -104,25 +125,6 @@ export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
                 onClear={() => setEditName('')}
                 autoFocus
               />
-              <div className='character-card__actions'>
-                <button
-                  type='button'
-                  className='character-card__action-btn character-card__action-btn--cancel'
-                  onClick={handleCancel}
-                  aria-label='Cancel editing'
-                >
-                  <CloseIcon />
-                </button>
-                <button
-                  type='button'
-                  className='character-card__action-btn character-card__action-btn--save'
-                  onClick={handleSave}
-                  disabled={!canSave}
-                  aria-label='Save changes'
-                >
-                  <CheckboxIcon />
-                </button>
-              </div>
             </div>
 
             <div className='character-card__field'>
@@ -135,9 +137,15 @@ export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
               <span className='character-card__field-value'>{data.species}</span>
             </div>
 
-            <div className='character-card__field'>
+            <div className='character-card__field character-card__field--location'>
               <span className='character-card__field-label'>Location:</span>
-              <span className='character-card__field-value'>{data.location}</span>
+              <TextField
+                variant='underlined'
+                size='sm'
+                value={editLocation}
+                onChange={setEditLocation}
+                onClear={() => setEditLocation('')}
+              />
             </div>
 
             <div className='character-card__field character-card__field--status'>

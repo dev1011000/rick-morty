@@ -1,8 +1,13 @@
-import type { CharacterStatus } from '@/shared/widgets/character-card/types';
+import type { CharacterStatus } from '@/widgets';
 
-export const STATUS_OPTIONS = [
-  { value: 'Alive' as CharacterStatus, label: 'Alive' },
-  { value: 'Dead' as CharacterStatus, label: 'Dead' },
-  { value: 'Unknown' as CharacterStatus, label: 'Unknown' },
+export type StatusOption = {
+  value: CharacterStatus;
+  label: string;
+};
+
+export const STATUS_OPTIONS: StatusOption[] = [
+  { value: 'Alive', label: 'Alive' },
+  { value: 'Dead', label: 'Dead' },
+  { value: 'Unknown', label: 'Unknown' },
 ];
 

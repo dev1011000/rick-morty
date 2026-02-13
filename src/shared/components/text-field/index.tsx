@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CloseIcon } from '@/assets';
-import { cn } from '@/shared/lib/cn/cn';
+import { cn } from '@/shared/lib';
 
 import './text-field.scss';
 
