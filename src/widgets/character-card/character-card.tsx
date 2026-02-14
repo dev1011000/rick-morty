@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { CheckboxIcon, CloseIcon, EditIcon } from '@/assets';
-import { STATUS_OPTIONS } from '@/shared/constants';
 import { Select, StatusDot, TextField } from '@/shared/components';
+import { STATUS_OPTIONS } from '@/shared/constants';
 import { cn } from '@/shared/lib';
 
 import type { CharacterCardData, CharacterCardMode, CharacterStatus } from './types';
@@ -165,4 +165,3 @@ export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
     </div>
   );
 };
-

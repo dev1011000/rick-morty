@@ -10,4 +10,3 @@ export const STATUS_OPTIONS: StatusOption[] = [
   { value: 'Dead', label: 'Dead' },
   { value: 'Unknown', label: 'Unknown' },
 ];
-

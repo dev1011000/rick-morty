@@ -37,25 +37,23 @@ export default defineConfig([
         'error',
         {
           groups: [
-            // 1) side-effect импорты (кроме css)
-            ['^\\u0000'],
-
-            // 2) react / внешние
+            // 1) react / внешние
             ['^react$', '^react-dom$', '^@?\\w'],
 
-            // 3) алиасы проекта
+            // 2) алиасы проекта
             ['^@/'],
 
-            // 4) относительные
+            // 3) относительные
             ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
             ['^\\.(?!/?$)', '^\\./?$'],
 
-            // 5) CSS
-            ['^.+\\.css$']
+            // 4) CSS (в конце)
+            ['^.+\\.(css|scss|sass)$']
           ]
         }
       ],
-      'simple-import-sort/exports': 'error'
+      'simple-import-sort/exports': 'error',
+      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1 }]
     }
   }
 ]);

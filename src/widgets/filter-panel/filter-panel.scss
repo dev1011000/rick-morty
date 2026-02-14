@@ -1,0 +1,18 @@
+.filter-panel {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  max-width: fit-content;
+  margin: 0 auto;
+
+  &__input {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  &__select {
+    width: 240px;
+    flex-shrink: 0;
+  }
+}
+
