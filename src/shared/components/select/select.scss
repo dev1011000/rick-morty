@@ -5,9 +5,9 @@
 }
 
 .select__trigger {
-  width: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
   border: 1px solid #393939;
   border-radius: 6px;
   background: #ffffff;
@@ -16,10 +16,10 @@
 
 .select__text,
 .select__option-text {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
   color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
   text-align: left;
 }
 
@@ -31,9 +31,9 @@
 
 .select__value {
   display: inline-flex;
+  flex: 1;
   align-items: center;
   min-width: 0;
-  flex: 1;
 }
 
 .select__text {  
@@ -46,8 +46,8 @@
 .select__arrow,
 .select__option-addon {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .select__addon,
@@ -98,24 +98,24 @@
 
 .select__dropdown {
   position: absolute;
-  left: 0;
   top: calc(100% + 7px);
+  left: 0;
+  z-index: 10;
   width: 100%;
-  background: #ffffff;
   border: 1px solid #393939;
   border-radius: 6px;
+  background: #ffffff;
   overflow: hidden;
-  z-index: 10;
 }
 
 .select__option {
-  width: 100%;
   display: flex;
   align-items: center;
-  background: transparent;
+  width: 100%;
   border: 0;
-  cursor: pointer;
+  background: transparent;
   text-align: left;
+  cursor: pointer;
 }
 
 .select--size-lg .select__option {

@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Footer, Header } from '@/shared/components';
 
-import './layout.css';
+import './layout.scss';
 
 const Layout = () => {
   return (

@@ -1,14 +1,9 @@
-import { useState } from 'react';
+import { BigLogoImage, CardImage } from '@/assets';
+import { CharacterCardWidget } from '@/widgets';
 
-import { BigLogoImage, SearchIcon } from '@/assets';
-import { TextField } from '@/shared/components';
-
-import './character-list.css';
+import './character-list.scss';
 
 const CharacterListPage = () => {
-  const [name, setName] = useState('');
-  const [search, setSearch] = useState('');
-
   return (
     <div className='character-list'>
       <div className='character-list__top'>
@@ -19,26 +14,18 @@ const CharacterListPage = () => {
         />
       </div>
 
-      <div className='character-list__controls'>
-        <TextField
-          variant='outlined'
-          placeholder='Filter by name...'
-          icon={<SearchIcon />}
-          value={search}
-          onChange={setSearch}
-          onClear={() => setSearch('')}
+      <div style={{ marginTop: '40px' }}>
+        <CharacterCardWidget
+          data={{
+            id: '1',
+            name: 'Rick Sanchez',
+            image: CardImage,
+            gender: 'Male',
+            species: 'Human',
+            location: 'Earth',
+            status: 'Alive',
+          }}
         />
-
-        <div style={{ marginTop: '40px' }}>
-          <TextField
-            label='Вариант для формы'
-            variant='underlined'
-            value={name}
-            onChange={setName}
-            onClear={() => setName('')}
-            placeholder='Rick Sanchez'
-          />
-        </div>
       </div>
     </div>
   );

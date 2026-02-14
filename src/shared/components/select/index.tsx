@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { ArrowDownIcon } from '@/assets';
-import { cn } from '@/shared/lib/cn/cn';
+import { cn } from '@/shared/lib';
 
 import type { SelectOption, SelectSize } from './types';
 
-import './select.css';
+import './select.scss';
 
 interface SelectProps<T extends string> {
   options: SelectOption<T>[];
@@ -20,7 +20,7 @@ interface SelectProps<T extends string> {
   renderOptionAddon?: (value: T) => React.ReactNode;
 }
 
-const Select = <T extends string>({
+export const Select = <T extends string>({
   options,
   value,
   onChange,
@@ -112,5 +112,3 @@ const Select = <T extends string>({
     </div>
   );
 };
-
-export default Select;
