@@ -1,4 +1,4 @@
-import type { FilterGender,FilterSpecies, FilterStatus } from '@/shared/constants';
+import type { FilterGender, FilterSpecies, FilterStatus } from '@/shared/constants';
 
 export interface FilterPanelValues {
   name: string;

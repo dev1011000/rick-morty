@@ -15,22 +15,23 @@ export default defineConfig([
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite
+      reactRefresh.configs.vite,
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser
+      globals: globals.browser,
     },
     plugins: {
       import: importPlugin,
-      'simple-import-sort': simpleImportSort
+      'simple-import-sort': simpleImportSort,
     },
     settings: {
       'import/resolver': {
-        typescript: true
-      }
+        typescript: true,
+      },
     },
     rules: {
+      // сортировку делает simple-import-sort
       'import/order': 'off',
 
       'simple-import-sort/imports': [
@@ -48,12 +49,12 @@ export default defineConfig([
             ['^\\.(?!/?$)', '^\\./?$'],
 
             // 4) CSS (в конце)
-            ['^.+\\.(css|scss|sass)$']
-          ]
-        }
+            ['^.+\\.(css|scss|sass)$'],
+          ],
+        },
       ],
-      'simple-import-sort/exports': 'error',
-      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1 }]
-    }
-  }
+      'simple-import-sort/exports': 'error',  
+      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1, maxBOF: 0 }],
+    },
+  },
 ]);

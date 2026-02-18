@@ -9,20 +9,9 @@ import './filter-panel.scss';
 export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
   const { values, onChange } = props;
 
-  const handleNameChange = (name: string) => {
-    onChange({ ...values, name });
-  };
-
-  const handleStatusChange = (status: FilterPanelValues['status']) => {
-    onChange({ ...values, status });
-  };
-
-  const handleSpeciesChange = (species: FilterPanelValues['species']) => {
-    onChange({ ...values, species });
-  };
-
-  const handleGenderChange = (gender: FilterPanelValues['gender']) => {
-    onChange({ ...values, gender });
+  const handleChange = <K extends keyof FilterPanelValues>(key: K, value: FilterPanelValues[K]) => {
+    onChange({ ...values, [key]: value });
+    
   };
 
   return (
@@ -32,8 +21,8 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
         placeholder='Filter by name...'
         icon={<SearchIcon />}
         value={values.name}
-        onChange={handleNameChange}
-        onClear={() => handleNameChange('')}
+        onChange={(value) => handleChange('name', value)}
+        onClear={() => handleChange('name', '')}
         className='filter-panel__input'
       />
 
@@ -41,7 +30,7 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
         placeholder='Species'
         options={SPECIES_FILTER_OPTIONS}
         value={values.species || ''}
-        onChange={handleSpeciesChange}
+        onChange={(value) => handleChange('species', value)}
         className='filter-panel__select'
       />
 
@@ -49,7 +38,7 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
         placeholder='Gender'
         options={GENDER_FILTER_OPTIONS}
         value={values.gender || ''}
-        onChange={handleGenderChange}
+        onChange={(value) => handleChange('gender', value)}
         className='filter-panel__select'
       />
 
@@ -57,7 +46,7 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
         placeholder='Status'
         options={STATUS_FILTER_OPTIONS}
         value={values.status || ''}
-        onChange={handleStatusChange}
+        onChange={(value) => handleChange('status', value)}
         className='filter-panel__select'
       />
     </div>
