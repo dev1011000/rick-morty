@@ -1,4 +1,4 @@
-export type CharacterStatus = 'Alive' | 'Dead' | 'Unknown';
+export type CharacterStatus = 'Alive' | 'Dead' | 'unknown';
 
 export type CharacterCardMode = 'view' | 'edit';
 

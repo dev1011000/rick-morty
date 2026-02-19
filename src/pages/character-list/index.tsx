@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
-import { BigLogoImage, CardImage } from '@/assets';
+import { BigLogoImage } from '@/assets';
+import { Loader } from '@/shared/components';
 import type { FilterPanelValues } from '@/widgets';
 import { CharacterCardWidget, FilterPanelWidget } from '@/widgets';
 
+import { useCharacters } from './useCharacters';
 import './character-list.scss';
 
 const CharacterListPage = () => {
@@ -13,6 +15,8 @@ const CharacterListPage = () => {
     species: '',
     gender: '',
   });
+
+  const { characters, isLoading } = useCharacters(filterValues);
 
   return (
     <div className='character-list'>
@@ -24,23 +28,34 @@ const CharacterListPage = () => {
         />
       </div>
 
-      <div className='character-list__filters'>
-        <FilterPanelWidget values={filterValues} onChange={setFilterValues} />
-      </div>
+      <FilterPanelWidget
+        className='character-list__filters'
+        values={filterValues}
+        onChange={setFilterValues}
+      />
 
-      <div style={{ marginTop: '40px' }}>
-        <CharacterCardWidget
-          data={{
-            id: '1',
-            name: 'Rick Sanchez',
-            image: CardImage,
-            gender: 'Male',
-            species: 'Human',
-            location: 'Earth',
-            status: 'Alive',
-          }}
-        />
-      </div>
+      {isLoading && (
+        <Loader size='large' caption='Loading characters...' className='character-list__loader' />
+      )}
+
+      {!isLoading && (
+        <div className='character-list__grid'>
+          {characters.map((character) => (
+            <CharacterCardWidget
+              key={character.id}
+              data={{
+                id: String(character.id),
+                name: character.name,
+                image: character.image,
+                gender: character.gender,
+                species: character.species,
+                location: character.location.name,
+                status: character.status,
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

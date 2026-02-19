@@ -22,4 +22,4 @@ export {
 
 export { default as BigLogoImage } from './images/big-logo.png';
 export { default as CardImage } from './images/card.png';
-export { default as PortalImage } from './images/portal.svg';
+export { default as PortalImage } from './images/portal.svg?react';

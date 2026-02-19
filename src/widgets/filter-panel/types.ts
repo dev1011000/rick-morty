@@ -10,4 +10,5 @@ export interface FilterPanelValues {
 export interface FilterPanelWidgetProps {
   values: FilterPanelValues;
   onChange: (values: FilterPanelValues) => void;
+  className?: string;
 }

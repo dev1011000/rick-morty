@@ -53,7 +53,7 @@ export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
   return (
     <div className={cn('character-card', { 'character-card--edit': mode === 'edit' })}>
       <div className='character-card__image'>
-        <img src={data.image} alt={data.name} />
+        <img src={data.image} alt={data.name} loading='lazy' />
       </div>
 
       <div className='character-card__content'>

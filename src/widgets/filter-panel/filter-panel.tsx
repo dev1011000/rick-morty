@@ -7,7 +7,7 @@ import type { FilterPanelValues, FilterPanelWidgetProps } from './types';
 import './filter-panel.scss';
 
 export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
-  const { values, onChange } = props;
+  const { values, onChange, className } = props;
 
   const handleChange = <K extends keyof FilterPanelValues>(key: K, value: FilterPanelValues[K]) => {
     onChange({ ...values, [key]: value });
@@ -15,7 +15,7 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
   };
 
   return (
-    <div className='filter-panel'>
+    <div className={`filter-panel${className ? ` ${className}` : ''}`}>
       <TextField
         variant='outlined'
         placeholder='Filter by name...'
