@@ -15,6 +15,12 @@
   height: auto;
 }
 
+.character-list__filters {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
 .character-list__loader,
 .character-list__controls {
   position: absolute;

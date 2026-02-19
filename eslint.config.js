@@ -15,47 +15,46 @@ export default defineConfig([
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite
+      reactRefresh.configs.vite,
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser
+      globals: globals.browser,
     },
     plugins: {
       import: importPlugin,
-      'simple-import-sort': simpleImportSort
+      'simple-import-sort': simpleImportSort,
     },
     settings: {
       'import/resolver': {
-        typescript: true
-      }
+        typescript: true,
+      },
     },
     rules: {
+      // сортировку делает simple-import-sort
       'import/order': 'off',
 
       'simple-import-sort/imports': [
         'error',
         {
           groups: [
-            // 1) side-effect импорты (кроме css)
-            ['^\\u0000'],
-
-            // 2) react / внешние
+            // 1) react / внешние
             ['^react$', '^react-dom$', '^@?\\w'],
 
-            // 3) алиасы проекта
+            // 2) алиасы проекта
             ['^@/'],
 
-            // 4) относительные
+            // 3) относительные
             ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
             ['^\\.(?!/?$)', '^\\./?$'],
 
-            // 5) CSS
-            ['^.+\\.css$']
-          ]
-        }
+            // 4) CSS (в конце)
+            ['^.+\\.(css|scss|sass)$'],
+          ],
+        },
       ],
-      'simple-import-sort/exports': 'error'
-    }
-  }
+      'simple-import-sort/exports': 'error',  
+      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1, maxBOF: 0 }],
+    },
+  },
 ]);
