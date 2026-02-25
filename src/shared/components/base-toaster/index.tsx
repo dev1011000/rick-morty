@@ -1,9 +1,7 @@
-import ReactHotToast from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
-const { Toaster: HotToaster } = ReactHotToast;
-
-export const Toaster = () => (
-  <HotToaster
+export const BaseToaster = () => (
+  <Toaster
     position='bottom-right'
     containerStyle={{ bottom: 32, right: 24 }}
     toastOptions={{
@@ -13,12 +11,12 @@ export const Toaster = () => (
           background: '#18181b',
           color: '#fafafa',
           border: '1px solid #3f3f46',
-          borderRadius: '8px',
+          borderRadius: 8,
           padding: '12px 16px',
-          fontSize: '14px',
+          fontSize: 14,
           fontFamily: 'Roboto, sans-serif',
           boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-          maxWidth: '320px',
+          maxWidth: 320,
         },
         iconTheme: {
           primary: '#f87171',
@@ -28,3 +26,4 @@ export const Toaster = () => (
     }}
   />
 );
+

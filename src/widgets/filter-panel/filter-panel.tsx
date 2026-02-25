@@ -1,6 +1,7 @@
 import { SearchIcon } from '@/assets';
 import { Select, TextField } from '@/shared/components';
 import { GENDER_FILTER_OPTIONS, SPECIES_FILTER_OPTIONS, STATUS_FILTER_OPTIONS } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 
 import type { FilterPanelValues, FilterPanelWidgetProps } from './types';
 
@@ -15,7 +16,7 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
   };
 
   return (
-    <div className={`filter-panel${className ? ` ${className}` : ''}`}>
+    <div className={cn('filter-panel', className)}>
       <TextField
         variant='outlined'
         placeholder='Filter by name...'

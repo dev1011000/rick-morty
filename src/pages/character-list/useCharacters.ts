@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { getCharacters } from '@/entities/character';
 import type { ApiCharacter } from '@/entities/character';
+import { getCharacters } from '@/entities/character';
 import type { FilterPanelValues } from '@/widgets';
 
 export const useCharacters = (filters: FilterPanelValues) => {
@@ -13,12 +13,11 @@ export const useCharacters = (filters: FilterPanelValues) => {
     const fetchCharacters = async () => {
       setIsLoading(true);
       try {
-        const data = await getCharacters({
-          name: filters.name || undefined,
-          status: filters.status || undefined,
-          species: filters.species || undefined,
-          gender: filters.gender || undefined,
-        });
+        const params = Object.fromEntries(
+          Object.entries(filters).filter(([, value]) => Boolean(value))
+        );   
+
+        const data = await getCharacters(params);
         setCharacters(data.results);
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Failed to load characters';

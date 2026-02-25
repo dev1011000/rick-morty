@@ -6,6 +6,7 @@ import type { FilterPanelValues } from '@/widgets';
 import { CharacterCardWidget, FilterPanelWidget } from '@/widgets';
 
 import { useCharacters } from './useCharacters';
+
 import './character-list.scss';
 
 const CharacterListPage = () => {
