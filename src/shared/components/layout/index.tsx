@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { Footer, Header } from '@/shared/components';
+import { BaseToaster, Footer, Header } from '@/shared/components';
 
 import './layout.scss';
 
@@ -12,6 +12,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <BaseToaster />
     </div>
   );
 };

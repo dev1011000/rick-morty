@@ -8,11 +8,12 @@ type LoaderSize = 'small' | 'large';
 type LoaderProps = {
   size: LoaderSize;
   caption?: string;
+  className?: string;
 };
 
-const Loader = ({ size, caption }: LoaderProps) => {
+const Loader = ({ size, caption, className }: LoaderProps) => {
   return (
-    <div className={cn('loader', `loader--size-${size}`)}>
+    <div className={cn('loader', `loader--size-${size}`, className)}>
       <div className="loader__icon" aria-hidden="true">
         <PortalImage />
       </div>

@@ -1,6 +1,9 @@
 .character-list {
   position: relative;
   min-height: calc(100vh - 120px);
+  max-width: 1044px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .character-list__top {
@@ -17,14 +20,26 @@
 
 .character-list__filters {
   margin-top: 40px;
-  display: flex;
-  justify-content: center;
 }
 
-.character-list__loader,
+.character-list__loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+}
+
 .character-list__controls {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.character-list__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+  padding-bottom: 40px;
 }

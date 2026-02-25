@@ -1,13 +1,14 @@
 import { SearchIcon } from '@/assets';
 import { Select, TextField } from '@/shared/components';
 import { GENDER_FILTER_OPTIONS, SPECIES_FILTER_OPTIONS, STATUS_FILTER_OPTIONS } from '@/shared/constants';
+import { cn } from '@/shared/lib';
 
 import type { FilterPanelValues, FilterPanelWidgetProps } from './types';
 
 import './filter-panel.scss';
 
 export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
-  const { values, onChange } = props;
+  const { values, onChange, className } = props;
 
   const handleChange = <K extends keyof FilterPanelValues>(key: K, value: FilterPanelValues[K]) => {
     onChange({ ...values, [key]: value });
@@ -15,7 +16,7 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
   };
 
   return (
-    <div className='filter-panel'>
+    <div className={cn('filter-panel', className)}>
       <TextField
         variant='outlined'
         placeholder='Filter by name...'
