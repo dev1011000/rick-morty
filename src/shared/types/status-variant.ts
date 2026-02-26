@@ -1,1 +1,1 @@
-export type StatusVariant = 'Alive' | 'Dead' | 'Unknown';
+export type StatusVariant = 'Alive' | 'Dead' | 'unknown';
