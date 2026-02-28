@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { BigLogoImage } from '@/assets';
 import { Loader } from '@/shared/components';
+import { useInfiniteScroll } from '@/shared/lib';
 import type { FilterPanelValues } from '@/widgets';
 import { CharacterCardWidget, FilterPanelWidget } from '@/widgets';
 
@@ -17,29 +18,37 @@ const CharacterListPage = () => {
     gender: '',
   });
 
-  const { characters, isLoading } = useCharacters(filterValues);
+  const { characters, hasMore, isLoadingInitial, isFetchingMore, loadMore } = useCharacters(filterValues);
+
+  const sentinelRef = useInfiniteScroll({
+    hasMore,
+    isLoading: isFetchingMore || isLoadingInitial,
+    onLoadMore: loadMore,
+  });
 
   return (
     <div className='character-list'>
-      <div className='character-list__top'>
-        <img
-          src={BigLogoImage}
-          alt='Rick and Morty'
-          className='character-list__logo'
+      <div className='character-list__sticky'>
+        <div className='character-list__top'>
+          <img
+            src={BigLogoImage}
+            alt='Rick and Morty'
+            className='character-list__logo'
+          />
+        </div>
+
+        <FilterPanelWidget
+          className='character-list__filters'
+          values={filterValues}
+          onChange={setFilterValues}
         />
       </div>
 
-      <FilterPanelWidget
-        className='character-list__filters'
-        values={filterValues}
-        onChange={setFilterValues}
-      />
-
-      {isLoading && (
+      {isLoadingInitial && (
         <Loader size='large' caption='Loading characters...' className='character-list__loader' />
       )}
 
-      {!isLoading && (
+      {!isLoadingInitial && (
         <div className='character-list__grid'>
           {characters.map((character) => (
             <CharacterCardWidget
@@ -56,6 +65,10 @@ const CharacterListPage = () => {
             />
           ))}
         </div>
+      )}
+
+      {!isLoadingInitial && hasMore && (
+        <Loader ref={sentinelRef} size='small' className='character-list__loader--more' />
       )}
     </div>
   );

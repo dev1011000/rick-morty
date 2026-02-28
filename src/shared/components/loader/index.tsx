@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { PortalImage } from '@/assets';
 import { cn } from '@/shared/lib';
 
@@ -11,9 +13,9 @@ type LoaderProps = {
   className?: string;
 };
 
-const Loader = ({ size, caption, className }: LoaderProps) => {
+const Loader = forwardRef<HTMLDivElement, LoaderProps>(({ size, caption, className }, ref) => {
   return (
-    <div className={cn('loader', `loader--size-${size}`, className)}>
+    <div ref={ref} className={cn('loader', `loader--size-${size}`, className)}>
       <div className="loader__icon" aria-hidden="true">
         <PortalImage />
       </div>
@@ -21,6 +23,8 @@ const Loader = ({ size, caption, className }: LoaderProps) => {
       {caption ? <div className="loader__caption">{caption}</div> : null}
     </div>
   );
-};
+});
+
+Loader.displayName = 'Loader';
 
 export default Loader;
