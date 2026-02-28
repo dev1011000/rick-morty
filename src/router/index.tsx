@@ -10,12 +10,12 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <CharacterListPage />
+        element: <CharacterListPage />,
       },
       {
         path: 'character/:id',
-        element: <CharacterInfoPage/>
-      }
-    ]
-  }
+        element: <CharacterInfoPage />,
+      },
+    ],
+  },
 ]);

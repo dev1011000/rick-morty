@@ -10,7 +10,7 @@ interface GetCharactersParams {
   gender?: string;
 }
 
-export const getCharacters = async (params?: GetCharactersParams): Promise<ApiCharactersResponse> => {
-  const { data } = await api.get<ApiCharactersResponse>('/character', { params });
+export const getCharacters = async (params?: GetCharactersParams, signal?: AbortSignal): Promise<ApiCharactersResponse> => {
+  const { data } = await api.get<ApiCharactersResponse>('/character', { params, signal });
   return data;
 };

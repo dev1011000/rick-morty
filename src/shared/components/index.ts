@@ -1,4 +1,5 @@
 export { BaseToaster } from './base-toaster';
+export { ErrorBoundary } from './error-boundary';
 export { default as Footer } from './footer';
 export { default as Header } from './header';
 export { default as Layout } from './layout';

@@ -8,5 +8,5 @@ export type StatusOption = {
 export const STATUS_OPTIONS: StatusOption[] = [
   { value: 'Alive', label: 'Alive' },
   { value: 'Dead', label: 'Dead' },
-  { value: 'Unknown', label: 'Unknown' },
+  { value: 'unknown', label: 'Unknown' },
 ];
