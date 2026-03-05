@@ -6,6 +6,14 @@
   padding: 0 24px;
 }
 
+.character-list__sticky {
+  position: sticky;
+  top: 46px;
+  z-index: 50;
+  background-color: var(--color-bg);
+  padding-bottom: 16px;
+}
+
 .character-list__top {
   display: flex;
   justify-content: center;
