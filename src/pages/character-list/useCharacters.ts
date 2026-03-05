@@ -1,13 +1,16 @@
+import axios from 'axios';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import type { ApiCharacter } from '@/entities/character';
 import { getCharacters } from '@/entities/character';
 import { useDebounce } from '@/shared/lib';
+import type { CharacterCardData, CharacterStatus } from '@/widgets';
 import type { FilterPanelValues } from '@/widgets';
 
+import { toCardData } from './mappers';
+
 export const useCharacters = (filters: FilterPanelValues) => {
-  const [characters, setCharacters] = useState<ApiCharacter[]>([]);
+  const [characters, setCharacters] = useState<CharacterCardData[]>([]);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const [isLoadingInitial, setIsLoadingInitial] = useState(true);
@@ -34,18 +37,18 @@ export const useCharacters = (filters: FilterPanelValues) => {
 
     const fetchInitial = async () => {
       setIsLoadingInitial(true);
-      setPage(1);
+      setPage(0);
 
       try {
         const data = await getCharacters({ ...filterParams, page: 0 }, controller.signal);
 
         if (filterVersion !== filterVersionRef.current) return;
 
-        setCharacters(data.results);
+        setCharacters(data.results.map(toCardData));
         setHasMore(data.info.next !== null);
         setIsLoadingInitial(false);
       } catch (error: unknown) {
-        if (error instanceof Error && error.name === 'AbortError') return;
+        if (axios.isCancel(error)) return;
         if (filterVersion !== filterVersionRef.current) return;
 
         const message = error instanceof Error ? error.message : 'Failed to load characters';
@@ -75,7 +78,7 @@ export const useCharacters = (filters: FilterPanelValues) => {
 
       if (filterVersion !== filterVersionRef.current) return;
 
-      setCharacters((prev) => [...prev, ...data.results]);
+      setCharacters((prev) => [...prev, ...data.results.map(toCardData)]);
       setHasMore(data.info.next !== null);
       setPage(nextPage);
     } catch (error: unknown) {
@@ -91,5 +94,18 @@ export const useCharacters = (filters: FilterPanelValues) => {
     }
   }, [hasMore, isFetchingMore, isLoadingInitial, page, filterParams]);
 
-  return { characters, hasMore, isLoadingInitial, isFetchingMore, loadMore };
+  const updateCharacter = useCallback(
+    (payload: { id: number; name: string; status: CharacterStatus; location: string }) => {
+      setCharacters((prev) =>
+        prev.map((character) =>
+          character.id === payload.id
+            ? { ...character, name: payload.name, status: payload.status, location: payload.location }
+            : character
+        )
+      );
+    },
+    []
+  );
+
+  return { characters, hasMore, isLoadingInitial, isFetchingMore, loadMore, updateCharacter };
 };

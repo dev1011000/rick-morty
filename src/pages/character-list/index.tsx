@@ -18,7 +18,7 @@ const CharacterListPage = () => {
     gender: '',
   });
 
-  const { characters, hasMore, isLoadingInitial, isFetchingMore, loadMore } = useCharacters(filterValues);
+  const { characters, hasMore, isLoadingInitial, isFetchingMore, loadMore, updateCharacter } = useCharacters(filterValues);
 
   const sentinelRef = useInfiniteScroll({
     hasMore,
@@ -53,15 +53,8 @@ const CharacterListPage = () => {
           {characters.map((character) => (
             <CharacterCardWidget
               key={character.id}
-              data={{
-                id: String(character.id),
-                name: character.name,
-                image: character.image,
-                gender: character.gender,
-                species: character.species,
-                location: character.location.name,
-                status: character.status,
-              }}
+              data={character}
+              onSave={updateCharacter}
             />
           ))}
         </div>
