@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { SearchIcon } from '@/assets';
 import { Select, TextField } from '@/shared/components';
 import { GENDER_FILTER_OPTIONS, SPECIES_FILTER_OPTIONS, STATUS_FILTER_OPTIONS } from '@/shared/constants';
@@ -7,7 +9,7 @@ import type { FilterPanelValues, FilterPanelWidgetProps } from './types';
 
 import './filter-panel.scss';
 
-export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
+export const FilterPanelWidget = memo((props: FilterPanelWidgetProps) => {
   const { values, onChange, className } = props;
 
   const handleChange = <K extends keyof FilterPanelValues>(key: K, value: FilterPanelValues[K]) => {
@@ -52,4 +54,4 @@ export const FilterPanelWidget = (props: FilterPanelWidgetProps) => {
       />
     </div>
   );
-};
+});

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { CheckboxIcon, CloseIcon, EditIcon } from '@/assets';
 import { Select, StatusDot, TextField } from '@/shared/components';
@@ -11,10 +12,10 @@ import './character-card.scss';
 
 interface CharacterCardWidgetProps {
   data: CharacterCardData;
-  onSave?: (payload: { id: string; name: string; status: CharacterStatus; location: string }) => Promise<void> | void;
+  onSave?: (payload: { id: number; name: string; status: CharacterStatus; location: string }) => Promise<void> | void;
 }
 
-export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
+export const CharacterCardWidget = memo((props: CharacterCardWidgetProps) => {
   const { data, onSave } = props;
 
   const [mode, setMode] = useState<CharacterCardMode>('view');
@@ -68,9 +69,12 @@ export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
               <EditIcon />
             </button>
 
-            <div className='character-card__name'>
-              <span>{data.name}</span>
-            </div>
+            <Link
+              to={`/character/${data.id}`}
+              className='character-card__name'
+            >
+              {data.name}
+            </Link>
 
             <div className='character-card__field'>
               <span className='character-card__field-label'>Gender:</span>
@@ -164,4 +168,4 @@ export const CharacterCardWidget = (props: CharacterCardWidgetProps) => {
       </div>
     </div>
   );
-};
+});

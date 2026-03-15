@@ -3,7 +3,7 @@ export type CharacterStatus = 'Alive' | 'Dead' | 'unknown';
 export type CharacterCardMode = 'view' | 'edit';
 
 export interface CharacterCardData {
-  id: string;
+  id: number;
   name: string;
   image: string;
   gender: string;
