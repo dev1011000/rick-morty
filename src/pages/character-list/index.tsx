@@ -60,6 +60,10 @@ const CharacterListPage = () => {
         </div>
       )}
 
+      {!isLoadingInitial && characters.length === 0 && (
+        <p className='character-list__empty'>Characters list is empty...</p>
+      )}
+
       {!isLoadingInitial && hasMore && (
         <Loader ref={sentinelRef} size='small' className='character-list__loader--more' />
       )}

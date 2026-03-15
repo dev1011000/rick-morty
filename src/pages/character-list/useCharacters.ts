@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import axios from 'axios';
 import toast from 'react-hot-toast';
 
 import { getCharacters } from '@/entities/character';
@@ -20,6 +20,7 @@ export const useCharacters = (filters: FilterPanelValues) => {
   const { status, species, gender } = filters;
 
   const filterVersionRef = useRef(0);
+  const loadMoreControllerRef = useRef<AbortController | null>(null);
 
   const filterParams = useMemo(
     () =>
@@ -62,19 +63,25 @@ export const useCharacters = (filters: FilterPanelValues) => {
 
     fetchInitial();
 
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      loadMoreControllerRef.current?.abort();
+      loadMoreControllerRef.current = null;
+    };
   }, [filterParams]);
 
   const loadMore = useCallback(async () => {
     if (!hasMore || isFetchingMore || isLoadingInitial) return;
 
     const filterVersion = filterVersionRef.current;
+    const controller = new AbortController();
+    loadMoreControllerRef.current = controller;
 
     setIsFetchingMore(true);
 
     try {
       const nextPage = page + 1;
-      const data = await getCharacters({ ...filterParams, page: nextPage });
+      const data = await getCharacters({ ...filterParams, page: nextPage }, controller.signal);
 
       if (filterVersion !== filterVersionRef.current) return;
 
@@ -82,6 +89,7 @@ export const useCharacters = (filters: FilterPanelValues) => {
       setHasMore(data.info.next !== null);
       setPage(nextPage);
     } catch (error: unknown) {
+      if (axios.isCancel(error)) return;
       if (filterVersion !== filterVersionRef.current) return;
 
       const message = error instanceof Error ? error.message : 'Failed to load more characters';
@@ -90,6 +98,9 @@ export const useCharacters = (filters: FilterPanelValues) => {
     } finally {
       if (filterVersion === filterVersionRef.current) {
         setIsFetchingMore(false);
+      }
+      if (loadMoreControllerRef.current === controller) {
+        loadMoreControllerRef.current = null;
       }
     }
   }, [hasMore, isFetchingMore, isLoadingInitial, page, filterParams]);
