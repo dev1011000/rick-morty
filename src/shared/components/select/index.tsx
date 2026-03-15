@@ -33,7 +33,7 @@ export const Select = <T extends string>({
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const selectedOption = useMemo(() => options.find((o) => o.value === value), [options, value]);
+  const selectedOption = useMemo(() => options.find((option) => option.value === value), [options, value]);
   const displayText = selectedOption?.label || placeholder || options[0]?.label || '';
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);

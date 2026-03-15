@@ -1,7 +1,7 @@
-import type { CharacterStatus } from '@/widgets';
+import type { StatusVariant } from '@/shared/types';
 
 export type StatusOption = {
-  value: CharacterStatus;
+  value: StatusVariant;
   label: string;
 };
 
