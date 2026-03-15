@@ -6,10 +6,12 @@
   border-radius: 50%;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .status-dot--variant-Alive {
   background: #12b800;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .status-dot--variant-Dead {
   background: #df0000;
 }

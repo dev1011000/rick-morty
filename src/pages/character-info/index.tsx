@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
 import { ArrowLeftIcon } from '@/assets';
-import { Loader } from '@/shared/components';
 import type { ApiCharacter } from '@/entities/character';
+import { Loader } from '@/shared/components';
 
 import { useCharacterInfo } from './useCharacterInfo';
 
